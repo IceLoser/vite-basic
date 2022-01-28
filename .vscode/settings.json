@@ -1,0 +1,124 @@
+{
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[dotenv]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[less]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": false
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "cSpell.words": ["unplugin"],
+  "css.validate": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  //===========================================
+  //============= Editor ======================
+  //===========================================
+  "editor.tabSize": 2,
+  //===========================================
+  //============= files =======================
+  //===========================================
+  "files.eol": "\n",
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/.cache": true,
+    "**/.editorconfig": true,
+    "**/.eslintcache": true,
+    "**/.git": true,
+    "**/.hg": true,
+    "**/.idea": true,
+    "**/.svn": true,
+    "**/CVS": true,
+    "**/bower_components": true,
+    "**/tmp": true
+  },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/.vscode/**": true,
+    "**/bower_components/**": true,
+    "**/dist/**": true,
+    "**/node_modules/**": true,
+    "**/tmp/**": true,
+    "**/yarn.lock": true
+  },
+  "htmlhint.options": {
+    "spec-char-escape": false
+  },
+  "i18n-ally.displayLanguage": "zh-CN",
+  "i18n-ally.enabledFrameworks": ["vue", "react"],
+  "i18n-ally.enabledParsers": ["ts"],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.localesPaths": ["src/locales/lang"],
+  "i18n-ally.namespace": true,
+  "i18n-ally.pathMatcher": "{locale}/{namespaces}.{ext}",
+  "i18n-ally.sortKeys": true,
+  "i18n-ally.sourceLanguage": "zh-CN",
+  "less.validate": false,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "path-intellisense.mappings": {
+    "/#/": "${workspaceRoot}/types",
+    "/@/": "${workspaceRoot}/src"
+  },
+  "scss.validate": false,
+  "search.exclude": {
+    "**/*.log": true,
+    "**/*.log*": true,
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.gitignore": true,
+    "**/.idea": true,
+    "**/.svn": true,
+    "**/.vscode": false,
+    "**/.yarn": true,
+    "**/bower_components": true,
+    "**/dist": true,
+    "**/elehukouben": true,
+    "**/node_modules": true,
+    "**/tmp": true,
+    "**/yarn.lock": true,
+    "CHANGELOG.md": true,
+    "dist": true,
+    "examples": true,
+    "node_modules": true,
+    "out": true,
+    "res": true,
+    "screenshots": true,
+    "yarn-error.log": true
+  },
+  "stylelint.enable": true,
+  "stylelint.packageManager": "pnpm",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "workbench.settings.enableNaturalLanguageSearch": false
+}
