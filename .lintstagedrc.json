@@ -1,0 +1,6 @@
+{
+  "*.{ts, tsx}": [
+    "eslint --cache --max-warnings 0  \"{build,src}/**/*.{vue,ts,tsx}\" --fix",
+    "prettier --write  \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\""
+  ]
+}
