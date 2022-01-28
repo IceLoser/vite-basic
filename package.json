@@ -1,6 +1,7 @@
 {
   "name": "vite-perfect-h5",
   "version": "0.0.1",
+  "versionCode": 1,
   "author": {
     "name": "Ice",
     "email": "missAtime@yeah.net"
