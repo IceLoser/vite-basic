@@ -1,6 +1,8 @@
 {
-  "*.{ts, tsx}": [
-    "eslint --cache --max-warnings 0  \"{build,src}/**/*.{vue,ts,tsx}\" --fix",
-    "prettier --write  \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\""
-  ]
+  "*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"],
+  "{!(package)*.json,*.code-snippets,.!(browserslist)*rc}": ["prettier --write--parser json"],
+  "package.json": ["prettier --write"],
+  "*.vue": ["eslint --fix", "prettier --write", "stylelint --fix"],
+  "*.{scss,less,styl,html}": ["stylelint --fix", "prettier --write"],
+  "*.md": ["prettier --write"]
 }
