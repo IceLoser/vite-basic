@@ -1,19 +1,18 @@
-import type { UserConfig, ConfigEnv } from "vite";
+import type { UserConfig, ConfigEnv } from 'vite';
 
-import { loadEnv } from "vite";
-import { wrapperEnv, pathResolve, configManualChunk } from "./build/utils";
-import { createProxy } from "./build/proxy";
-import { createVitePlugins } from "./build/plugin";
+import { loadEnv } from 'vite';
+import { wrapperEnv, pathResolve, configManualChunk } from './build/utils';
+import { createProxy } from './build/proxy';
+import { createVitePlugins } from './build/plugin';
 
 export default ({ mode, command }: ConfigEnv): UserConfig => {
   const root = process.cwd();
   const env = loadEnv(mode, root);
 
   const viteEnv = wrapperEnv(env);
-  const { VITE_PUBLIC_PATH, VITE_PORT, VITE_PROXY, VITE_DROP_CONSOLE } =
-    viteEnv;
+  const { VITE_PUBLIC_PATH, VITE_PORT, VITE_PROXY, VITE_DROP_CONSOLE } = viteEnv;
 
-  const isBuild = command === "build";
+  const isBuild = command === 'build';
 
   return {
     base: VITE_PUBLIC_PATH,
@@ -22,11 +21,11 @@ export default ({ mode, command }: ConfigEnv): UserConfig => {
       alias: [
         {
           find: /\/@\//,
-          replacement: pathResolve("src") + "/",
+          replacement: pathResolve('src') + '/',
         },
         {
           find: /\/#\//,
-          replacement: pathResolve("types") + "/",
+          replacement: pathResolve('types') + '/',
         },
       ],
     },
@@ -37,14 +36,12 @@ export default ({ mode, command }: ConfigEnv): UserConfig => {
       proxy: createProxy(VITE_PROXY), // !从.env加载代理配置
     },
     esbuild: {
-      pure: VITE_DROP_CONSOLE
-        ? ["console.info", "console.log", "debugger"]
-        : [],
+      pure: VITE_DROP_CONSOLE ? ['console.info', 'console.log', 'debugger'] : [],
     },
     build: {
-      target: "es2015",
-      cssTarget: "chrome80",
-      outDir: "dist",
+      target: 'es2015',
+      cssTarget: 'chrome80',
+      outDir: 'dist',
       brotliSize: false,
       chunkSizeWarningLimit: 2000,
       rollupOptions: {
@@ -56,7 +53,7 @@ export default ({ mode, command }: ConfigEnv): UserConfig => {
     css: {
       preprocessorOptions: {
         less: {
-          modifyVars: "",
+          modifyVars: '',
           javascriptEnabled: true,
         },
       },

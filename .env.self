@@ -1,3 +1,5 @@
+NODE_ENV=development
+
 VITE_PUBLIC_PATH = "/"
 
 # 跨域代理，可以配置多个

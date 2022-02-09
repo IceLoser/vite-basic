@@ -1,4 +1,4 @@
-import type { VNode, ComponentRenderProxy } from "vue";
+import type { VNode, ComponentRenderProxy } from 'vue';
 
 declare global {
   type Recordable<T = any> = Record<string, T>;
@@ -19,7 +19,7 @@ declare global {
     VITE_USE_PWA: boolean; // 是否开启 pwa
     VITE_LEGACY: boolean; // 是否与旧的浏览器兼容
 
-    VITE_BUILD_COMPRESS: "gzip" | "brotli" | "none"; // 是否启用 gzip 压缩或 brotli 压缩
+    VITE_BUILD_COMPRESS: 'gzip' | 'brotli' | 'none'; // 是否启用 gzip 压缩或 brotli 压缩
     VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE: boolean; // 使用压缩时是否删除原始文件
   }
 
