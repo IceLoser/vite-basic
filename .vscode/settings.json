@@ -93,8 +93,9 @@
   "less.validate": false,
   "liveServer.settings.donotShowInfoMsg": true,
   "path-intellisense.mappings": {
-    "/#/": "${workspaceRoot}/types",
-    "/@/": "${workspaceRoot}/src"
+    "/~/": "${workspaceRoot}/",
+    "/@/": "${workspaceRoot}/src",
+    "/#/": "${workspaceRoot}/types"
   },
   "scss.validate": false,
   "search.exclude": {

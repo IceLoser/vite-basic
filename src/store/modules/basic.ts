@@ -1,7 +1,7 @@
 import { store } from '/@/store';
 import { defineStore } from 'pinia';
 import { getBrowserType } from '/@/utils/browserType';
-import { dependencies, version, versionCode } from 'package.json';
+import { version, versionCode, dependencies } from '../../../package.json';
 
 interface Headers {
   readonly a: 16; // 平台来源
