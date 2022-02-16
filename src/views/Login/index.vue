@@ -2,8 +2,8 @@
   <section class="flex flex-col content-center justify-between w-full h-full overflow-hidden">
     <div class="text-center text-white login_card login_card_logo">
       <h1 class="font-mono text-xl font-bold">完美大学</h1>
-      <img class="w-32 h-32 mx-auto my-8 rounded-full" src="/@/assets/images/logo.png" alt="" />
-      <p class="text-justify text-base p-4 indent-8.5 backdrop-blur-sm bg-white/20 rounded">
+      <img class="w-32 h-32 mx-auto my-8 rounded-full" src="/@/assets/images/logo_no.png" alt="" />
+      <p class="text-justify text-base p-4 indent-8.5 backdrop-blur-sm bg-white/20 rounded shadow">
         优秀名企快速了解,海量招聘实时更新;只读经典和精华,让阅读变得简单高效;专业点评新鲜资讯,理解快人一步.
       </p>
     </div>
@@ -28,8 +28,12 @@
             autocomplete="given-name"
             class="pr-28 login_card_input"
           />
-          <a class="absolute bottom-0 right-0 block w-auto h-10 px-4 leading-10 text-primary">
-            获取验证码
+          <a
+            class="absolute bottom-0 right-0 block w-auto h-10 px-4 leading-10 text-primary"
+            :class="{ 'text-primary/60': countDown }"
+            @click="countStart(10)"
+          >
+            {{ countDown ? `重新获取( ${countDown < 10 ? '0' : ''}${countDown} )s` : '获取验证码' }}
           </a>
         </div>
       </div>
@@ -42,8 +46,9 @@
 </template>
 
 <script lang="ts" setup name="Login">
-  // const router = useRouter();
-  // console.info('ICE-[ router ] >', router);
+  import { useCountDown } from '/@/hooks/useCountDown';
+
+  const { countDown, countStart } = useCountDown();
 </script>
 
 <style scoped lang="less">
