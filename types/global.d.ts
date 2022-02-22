@@ -23,6 +23,11 @@ declare global {
     VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE: boolean; // 使用压缩时是否删除原始文件
   }
 
+  declare type TimeoutHandle = ReturnType<typeof setTimeout>;
+  declare type IntervalHandle = ReturnType<typeof setInterval>;
+
+  declare type Nullable<T> = T | null;
+
   namespace JSX {
     type Element = VNode;
     type ElementClass = ComponentRenderProxy;

@@ -1,4 +1,3 @@
-import type { Plugin } from 'vite';
 import { createHtmlPlugin } from 'vite-plugin-html';
 
 /**
@@ -8,7 +7,7 @@ import { createHtmlPlugin } from 'vite-plugin-html';
 export function configHtmlPlugin(env: ViteEnv, isBuild: boolean) {
   const { VITE_GLOB_APP_TITLE } = env;
 
-  const htmlPlugin: Plugin[] = createHtmlPlugin({
+  const htmlPlugin = createHtmlPlugin({
     minify: isBuild,
     /**
      * 在这里写 entry 后，你将不需要在`index.html`内添加 script 标签，原有标签需要删除

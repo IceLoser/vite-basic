@@ -1,5 +1,5 @@
-import Components from "unplugin-vue-components/vite";
-import { VantResolver } from "unplugin-vue-components/resolvers";
+import Components from 'unplugin-vue-components/vite';
+import { VantResolver, NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 
 /**
  * 按需加载
@@ -8,6 +8,7 @@ import { VantResolver } from "unplugin-vue-components/resolvers";
 export function configComponentsPlugin() {
   return Components({
     dts: true, // !当' typescript '被安装时，默认启用
-    resolvers: [VantResolver()],
+    deep: true,
+    resolvers: [VantResolver(), NaiveUiResolver()],
   });
 }

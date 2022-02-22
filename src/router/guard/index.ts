@@ -31,9 +31,6 @@ function createPageGuard(router: Router) {
 
   router.afterEach((to) => {
     loadedPageMap.set(to.path, true);
-    const timer = setTimeout(() => {
-      NProgress.done();
-      clearInterval(timer);
-    }, 3000);
+    NProgress.done();
   });
 }

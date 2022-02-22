@@ -41,7 +41,7 @@
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.words": ["unplugin"],
+  "cSpell.words": ["draged", "unplugin"],
   "css.validate": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true

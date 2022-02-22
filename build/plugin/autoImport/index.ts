@@ -1,4 +1,4 @@
-import AutoImport from "unplugin-auto-import/vite";
+import AutoImport from 'unplugin-auto-import/vite';
 
 /**
  * 依赖按需自动导入
@@ -6,7 +6,7 @@ import AutoImport from "unplugin-auto-import/vite";
  */
 export function configAutoImportPlugin() {
   return AutoImport({
-    imports: ["vue", "vue-router"],
-    dts: "types/auto-imports.d.ts",
+    imports: ['vue', 'vue-router'],
+    dts: 'types/auto-imports.d.ts',
   });
 }

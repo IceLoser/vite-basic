@@ -1,4 +1,4 @@
-import { VitePWA } from "vite-plugin-pwa";
+import { VitePWA } from 'vite-plugin-pwa';
 
 /**
  * pwa
@@ -14,14 +14,14 @@ export function configPwaPlugin(env: ViteEnv) {
         short_name: VITE_GLOB_APP_SHORT_NAME,
         icons: [
           {
-            src: "./resource/img/pwa-192x192.png",
-            sizes: "192x192",
-            type: "image/png",
+            src: './resource/img/pwa-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
           },
           {
-            src: "./resource/img/pwa-512x512.png",
-            sizes: "512x512",
-            type: "image/png",
+            src: './resource/img/pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
           },
         ],
       },
