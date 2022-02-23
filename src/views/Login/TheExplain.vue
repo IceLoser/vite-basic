@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-full pl-4 mr-4 xl:flex xl:flex-col xl:w-6/12">
+  <div class="hidden min-h-full pl-4 mr-4 xl:flex xl:flex-col xl:w-6/12">
     <AppLogo class="ice_login_logo" />
     <div class="my-auto">
       <img alt="title" src="/@/assets/images/login/login_box_bg.svg" class="w-1/2 -mt-16" />

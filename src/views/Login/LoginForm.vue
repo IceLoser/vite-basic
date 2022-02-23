@@ -15,10 +15,12 @@
           <n-input v-model:value="formData.userName" placeholder="请输入您的账号" />
         </n-form-item>
         <n-form-item path="password" class="login-form-box-item">
-          <n-input placeholder="请输入您的密码" v-model:value="formData.password" />
-        </n-form-item>
-        <n-form-item class="login-form-box-item">
-          <!-- <basic-drag-verify @success="handleSuccess" /> -->
+          <n-input
+            type="password"
+            show-password-on="mousedown"
+            placeholder="请输入您的密码"
+            v-model:value="formData.password"
+          />
         </n-form-item>
         <n-form-item label="Checkbox" path="checkboxValue">
           <n-checkbox v-model:checked="formData.remember"> 记住密码 </n-checkbox>
@@ -34,7 +36,9 @@
 <script lang="ts" setup name="LoginForm">
   import { NForm, NFormItem, NInput, NButton, NCheckbox } from 'naive-ui';
 
-  const formRef = ref(null);
+  type N_FORM = typeof NForm;
+
+  const formRef = ref<N_FORM>(NForm);
   const formData = reactive({
     userName: '',
     password: '',
@@ -44,12 +48,12 @@
   const rules = {
     userName: {
       required: true,
-      message: '请输入姓名',
+      message: '请输入您的账号',
       trigger: ['input'],
     },
     password: {
       required: true,
-      message: '请输入年龄',
+      message: '请输入您的密码',
       trigger: ['input'],
     },
   };
@@ -60,22 +64,31 @@
   // };
 
   const onLogin = () => {
-    console.info('ICE-[ login ] >>>', formData);
+    formRef.value.validate((errors: boolean) => {
+      if (!errors) {
+        // message.success('Valid');
+        console.info('ICE-[ login ] >>>', formData);
+      } else {
+        console.log(errors);
+        // message.error('Invalid');
+      }
+    });
   };
 </script>
 
 <style lang="less">
   .login-form {
     &-card {
-      @apply relative w-full px-5 py-8 m-auto;
+      @apply relative w-full px-5 py-8 m-auto bg-white;
       @apply rounded-md shadow-md;
       @apply xl:ml-16 xl:bg-transparent xl:p-4 xl:w-auto xl:shadow-none;
+      @apply lg:w-3/4 !important;
       @apply sm:px-8;
       @apply sm:w-3/4 lg:w-2/4;
     }
 
     &-title {
-      @apply mb-4;
+      @apply mb-6;
       @apply font-bold text-2xl text-center;
       @apply xl:text-3xl xl:text-left;
     }
@@ -84,7 +97,7 @@
       @apply w-full;
 
       &-item {
-        @apply w-96;
+        @apply w-full;
       }
     }
   }

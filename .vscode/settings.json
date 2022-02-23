@@ -51,6 +51,7 @@
   //============= Editor ======================
   //===========================================
   "editor.tabSize": 2,
+  "eslint.packageManager": "pnpm",
   //===========================================
   //============= files =======================
   //===========================================
@@ -92,10 +93,11 @@
   "i18n-ally.sourceLanguage": "zh-CN",
   "less.validate": false,
   "liveServer.settings.donotShowInfoMsg": true,
+  "npm.packageManager": "pnpm",
   "path-intellisense.mappings": {
-    "/~/": "${workspaceRoot}/",
+    "/#/": "${workspaceRoot}/types",
     "/@/": "${workspaceRoot}/src",
-    "/#/": "${workspaceRoot}/types"
+    "/~/": "${workspaceRoot}/"
   },
   "scss.validate": false,
   "search.exclude": {
@@ -125,7 +127,10 @@
   },
   "stylelint.enable": true,
   "stylelint.packageManager": "pnpm",
+  "typescript.check.npmIsInstalled": false,
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.tsdk": "./node_modules/typescript/lib",
-  "workbench.settings.enableNaturalLanguageSearch": false
+  "typescript.tsserver.pluginPaths": ["typescript-plugin-css-modules"],
+  "workbench.settings.enableNaturalLanguageSearch": false,
+  "typescript.locale": "zh-CN"
 }
