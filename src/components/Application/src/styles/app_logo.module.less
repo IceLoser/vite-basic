@@ -1,0 +1,27 @@
+.container {
+  @apply flex items-center;
+
+  .logo {
+    @apply w-16 h-16 rounded-full;
+  }
+
+  .title {
+    @apply px-4 font-comfortaa font-bold text-3xl text-white;
+  }
+}
+
+.container-sider {
+  @apply flex items-center justify-center;
+  height: var(--header-height);
+  background-image: var(--ice-purple-to-blue-color);
+
+  .logo {
+    @apply w-10 h-10 rounded-lg;
+    box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  }
+
+  .title {
+    @apply px-4 font-comfortaa font-bold text-xl opacity-0;
+    @apply animate-opacity;
+  }
+}

@@ -21,15 +21,18 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 
   vitePlugins.push(configComponentsPlugin());
   vitePlugins.push(configAutoImportPlugin());
+  // @ts-ignore
   vitePlugins.push(configHtmlPlugin(viteEnv, isBuild));
 
   if (isBuild) {
     VITE_LEGACY && vitePlugins.push(legacy());
 
     vitePlugins.push(
+      // @ts-ignore
       configCompressPlugin(VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE),
     );
 
+    // @ts-ignore
     vitePlugins.push(configPwaPlugin(viteEnv));
     vitePlugins.push(configVisualizerPlugin());
   }

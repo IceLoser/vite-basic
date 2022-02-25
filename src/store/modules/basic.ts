@@ -3,6 +3,9 @@ import { defineStore } from 'pinia';
 import { getBrowserType } from '/@/utils/browserType';
 import { version, versionCode, dependencies } from '../../../package.json';
 
+import { getAuthCache, setAuthCache } from '/@/utils/auth';
+import { HEADERS_KEY } from '/@/enums/cacheEnum';
+
 interface Headers {
   readonly a: 16; // 平台来源
   readonly d: string; // 时间戳
@@ -39,13 +42,22 @@ export const useBasicStore = defineStore({
     },
   }),
   getters: {
+    getToken(): string {
+      const { t } = getAuthCache<HeadersRequest>(HEADERS_KEY);
+      return this.headers.t || t || '';
+    },
     getHeaders(): Headers {
-      return this.headers;
+      return this.headers || getAuthCache<HeadersRequest>(HEADERS_KEY);
     },
   },
   actions: {
+    setToken(t: string) {
+      this.headers = { ...this.headers, t };
+      setAuthCache(HEADERS_KEY, this.headers);
+    },
     setHeaders(data: Headers) {
       this.headers = { ...this.headers, ...data };
+      setAuthCache(HEADERS_KEY, this.headers);
     },
   },
 });

@@ -2,6 +2,7 @@ import { store } from '/@/store';
 import { defineStore } from 'pinia';
 
 interface userState {
+  avatar: string;
   userId: string;
   userName: string;
 }
@@ -9,10 +10,14 @@ interface userState {
 export const useUserStore = defineStore({
   id: 'app-user',
   state: (): userState => ({
+    avatar: '',
     userId: '',
     userName: '',
   }),
   getters: {
+    getAvatar(): string {
+      return this.avatar;
+    },
     getUserId(): string {
       return this.userId;
     },
@@ -21,9 +26,10 @@ export const useUserStore = defineStore({
     },
   },
   actions: {
-    setUserInfo(data: userState) {
-      this.userId = data.userId;
-      this.userName = data.userName;
+    setUserInfo() {
+      this.avatar = '';
+      this.userId = '001';
+      this.userName = '小冰(Ice)';
     },
   },
 });

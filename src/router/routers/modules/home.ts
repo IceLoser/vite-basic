@@ -1,15 +1,25 @@
 import type { AppRouteModule } from '/#/router';
 
+const LAYOUT = () => import('/@/layout/index.vue');
+
 const dashboard: AppRouteModule = {
   path: '/home',
   name: 'Home',
-  component: () => import('/@/views/Home/index.vue'),
+  component: LAYOUT,
+  redirect: '/home/index',
   meta: {
-    orderNo: 10,
     title: '首页',
-    hideMenu: true,
-    ignoreKeepAlive: true,
   },
+  children: [
+    {
+      path: 'index',
+      name: 'HomeRoot',
+      component: () => import('/@/views/Home/index.vue'),
+      meta: {
+        title: '首页',
+      },
+    },
+  ],
 };
 
 export default dashboard;

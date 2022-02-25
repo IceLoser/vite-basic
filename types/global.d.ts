@@ -4,7 +4,7 @@ declare global {
   type Recordable<T = any> = Record<string, T>;
   type ImportMetaEnv = ViteEnv;
 
-  interface ViteEnv {
+  interface ViteEnv extends ImportMetaEnv {
     VITE_PORT: number; // 端口号
     VITE_GLOB_APP_TITLE: string; // 全称
     VITE_GLOB_APP_SHORT_NAME: string; // 简称

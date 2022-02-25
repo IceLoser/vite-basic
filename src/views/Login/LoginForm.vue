@@ -34,14 +34,21 @@
 </template>
 
 <script lang="ts" setup name="LoginForm">
-  import { NForm, NFormItem, NInput, NButton, NCheckbox } from 'naive-ui';
+  import type { FormInst } from 'naive-ui';
 
-  type N_FORM = typeof NForm;
+  import { useUserStore } from '/@/store/modules/user';
+  import { useBasicStore } from '/@/store/modules/basic';
+  import { useGo } from '/@/hooks/usePage';
 
-  const formRef = ref<N_FORM>(NForm);
+  const route = useRoute();
+  const userStore = useUserStore();
+  const basicStore = useBasicStore();
+  const go = useGo();
+
+  const formRef = ref<FormInst | null>(null);
   const formData = reactive({
-    userName: '',
-    password: '',
+    userName: 'Ice',
+    password: '001122',
     remember: false,
   });
 
@@ -64,13 +71,15 @@
   // };
 
   const onLogin = () => {
-    formRef.value.validate((errors: boolean) => {
+    formRef.value?.validate((errors) => {
       if (!errors) {
-        // message.success('Valid');
-        console.info('ICE-[ login ] >>>', formData);
+        const { redirect } = <{ redirect?: string }>route.query;
+
+        basicStore.setToken('token:test');
+        userStore.setUserInfo({ userId: '001122', userName: 'Ice' });
+        go(redirect || '/home'); // 跳转拦截前路径 OR 首页
       } else {
         console.log(errors);
-        // message.error('Invalid');
       }
     });
   };

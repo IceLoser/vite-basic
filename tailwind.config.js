@@ -36,8 +36,22 @@ module.exports = {
     },
     colors: {
       ...colors,
-      primary: 'rgb(202, 75, 97)',
+      primary: 'rgb(159, 120, 255)',
       'dark-bg': 'rgb(30, 41, 59)',
+      blue: 'rgb(50, 202, 254)',
+      'dark-primary': 'rgb(81, 74, 157)',
+      'dark-blue': 'rgb(36, 198, 220)',
+    },
+    extend: {
+      animation: {
+        opacity: 'opacity .8s cubic-bezier(0.4, 0, 0.2, 1) 1 normal forwards',
+      },
+      keyframes: {
+        opacity: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        },
+      },
     },
   },
   plugins: [],

@@ -23,14 +23,14 @@ export function createHtmlGuard(router: Router) {
     }
 
     const basicStore = useBasicStoreWithOut();
-    const { t } = basicStore.getHeaders;
+    const t = basicStore.getToken;
 
     if (t) {
       const userStore = useUserStoreWithOut();
       const userId = userStore.getUserId;
 
       if (!userId) {
-        userStore.setUserInfo({ userId: '1', userName: 'ICE' });
+        userStore.setUserInfo();
       }
 
       next();

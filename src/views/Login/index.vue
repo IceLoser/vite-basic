@@ -14,9 +14,6 @@
 <script lang="ts" setup name="Login">
   import TheExplain from './TheExplain.vue';
   import LoginForm from './LoginForm.vue';
-  // import { useCountDown } from '/@/hooks/useCountDown';
-
-  // const { countDown, countStart } = useCountDown();
 </script>
 
 <style scoped lang="less">

@@ -1,6 +1,6 @@
 <template>
   <n-config-provider :theme="theme" :theme-overrides="themeOverrides">
-    <AppMain />
+    <router-view />
   </n-config-provider>
 </template>
 
@@ -8,7 +8,6 @@
   import type { GlobalThemeOverrides } from 'naive-ui';
 
   import { NConfigProvider, darkTheme } from 'naive-ui';
-  import AppMain from '/@/layout/AppMain/index.vue';
 
   import { useTitle } from './hooks/core/useTitle';
   import { useNetworkStatus } from './hooks/event/useEvent';

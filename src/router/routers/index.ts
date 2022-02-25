@@ -1,6 +1,6 @@
 import type { AppRouteModule } from '/#/router';
 
-import { RootRoute, LoginRoute, ErrorRoute } from '/@/router/routers/basic';
+import { RootRoute, LoginRoute, ErrorRoute, REDIRECT_ROUTE } from '/@/router/routers/basic';
 
 const modules = import.meta.globEager('./modules/**/*.ts');
 
@@ -14,4 +14,4 @@ Object.keys(modules).forEach((key) => {
 
 export const asyncRoutes = routeModuleList;
 
-export const basicRoutes = [RootRoute, LoginRoute, ...ErrorRoute, ...asyncRoutes];
+export const basicRoutes = [RootRoute, LoginRoute, REDIRECT_ROUTE, ...ErrorRoute, ...asyncRoutes];
