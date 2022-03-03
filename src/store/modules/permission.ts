@@ -3,10 +3,12 @@ import type { RouteRecordRaw } from 'vue-router';
 
 import { store } from '/@/store';
 import { defineStore } from 'pinia';
+import { asyncRoutes } from '/@/router/routers';
 
 interface permissionState {
   menuList: Array<Menu>;
   routerList: Array<RouteRecordRaw>;
+  isDynamicAddedRoute: boolean;
 }
 
 export const usePermissionStore = defineStore({
@@ -14,15 +16,25 @@ export const usePermissionStore = defineStore({
   state: (): permissionState => ({
     menuList: [],
     routerList: [],
+    isDynamicAddedRoute: false,
   }),
   getters: {
     getMenuList(): Array<Menu> {
       return this.menuList;
     },
+    getIsDynamicAddedRoute(): boolean {
+      return this.isDynamicAddedRoute;
+    },
   },
   actions: {
-    setUserInfo(data: Array<Menu>) {
-      this.menuList = data;
+    setMenuList() {
+      this.menuList = [];
+    },
+    setDynamicAddedRoute(status: boolean) {
+      this.isDynamicAddedRoute = status;
+    },
+    async buildRouter() {
+      return asyncRoutes;
     },
   },
 });

@@ -43,8 +43,8 @@ export const useBasicStore = defineStore({
   }),
   getters: {
     getToken(): string {
-      const { t } = getAuthCache<HeadersRequest>(HEADERS_KEY);
-      return this.headers.t || t || '';
+      const headersCache = getAuthCache<HeadersRequest>(HEADERS_KEY);
+      return this.headers.t || headersCache?.t || '';
     },
     getHeaders(): Headers {
       return this.headers || getAuthCache<HeadersRequest>(HEADERS_KEY);

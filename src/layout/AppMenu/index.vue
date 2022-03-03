@@ -13,7 +13,7 @@
 
   import { RouterLink } from 'vue-router';
   import { NIcon } from 'naive-ui';
-  import { HomeOutline as HomeIcon } from '@vicons/ionicons5';
+  import { HomeOutline as MainIcon } from '@vicons/ionicons5';
 
   const props = defineProps({
     status: {
@@ -24,6 +24,7 @@
 
   const router = useRouter();
   const currentRoute = router.currentRoute.value.name;
+  console.info('ICE-[ currentRoute ] >>>', currentRoute);
 
   const collapsed = computed(() => props.status);
   const menuOptions: MenuOption[] = [
@@ -33,13 +34,14 @@
           RouterLink,
           {
             to: {
-              name: 'HomeRoot',
+              name: 'MainRoot',
+              path: '/main/index',
             },
           },
           { default: () => '首页' },
         ),
-      key: 'HomeRoot',
-      icon: renderIcon(HomeIcon),
+      key: 'Main',
+      icon: renderIcon(MainIcon),
     },
   ];
 

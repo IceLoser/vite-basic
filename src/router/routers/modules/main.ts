@@ -3,18 +3,18 @@ import type { AppRouteModule } from '/#/router';
 const LAYOUT = () => import('/@/layout/index.vue');
 
 const dashboard: AppRouteModule = {
-  path: '/home',
-  name: 'Home',
+  path: '/main',
+  name: 'MainRoot',
   component: LAYOUT,
-  redirect: '/home/index',
+  redirect: '/main/index',
   meta: {
     title: '首页',
   },
   children: [
     {
       path: 'index',
-      name: 'HomeRoot',
-      component: () => import('/@/views/Home/index.vue'),
+      name: 'Main',
+      component: () => import('/@/views/Main/index.vue'),
       meta: {
         title: '首页',
       },

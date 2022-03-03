@@ -7,7 +7,7 @@ export const REDIRECT_NAME = 'Redirect';
 export const RootRoute: AppRouteRecordRaw = {
   path: '/',
   name: 'Root',
-  redirect: '/home',
+  redirect: '/main',
   meta: {
     title: 'Root',
     hideBreadcrumb: true,

@@ -6,14 +6,16 @@ import md5 from 'crypto-js/md5';
 import UTF8 from 'crypto-js/enc-utf8';
 import Base64 from 'crypto-js/enc-base64';
 
+import { cacheCipher } from '/@/settings/encryptionSetting';
+
 export interface EncryptionParams {
   key: string;
   iv: string;
 }
 
 export class AesEncryption {
-  private key;
-  private iv;
+  private key = cacheCipher.key;
+  private iv = cacheCipher.iv;
 
   constructor(opt: Partial<EncryptionParams> = {}) {
     const { key, iv } = opt;

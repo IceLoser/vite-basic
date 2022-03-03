@@ -4,7 +4,12 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    NButton: typeof import('naive-ui')['NButton'];
+    NCheckbox: typeof import('naive-ui')['NCheckbox'];
     NDivider: typeof import('naive-ui')['NDivider'];
+    NForm: typeof import('naive-ui')['NForm'];
+    NFormItem: typeof import('naive-ui')['NFormItem'];
+    NInput: typeof import('naive-ui')['NInput'];
     NLayout: typeof import('naive-ui')['NLayout'];
     NLayoutContent: typeof import('naive-ui')['NLayoutContent'];
     NLayoutFooter: typeof import('naive-ui')['NLayoutFooter'];

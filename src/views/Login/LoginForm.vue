@@ -76,8 +76,8 @@
         const { redirect } = <{ redirect?: string }>route.query;
 
         basicStore.setToken('token:test');
-        userStore.setUserInfo({ userId: '001122', userName: 'Ice' });
-        go(redirect || '/home'); // 跳转拦截前路径 OR 首页
+        userStore.setUserInfo();
+        go(redirect || '/main'); // 跳转拦截前路径 OR 首页
       } else {
         console.log(errors);
       }

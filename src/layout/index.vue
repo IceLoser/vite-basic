@@ -66,18 +66,25 @@
 
         .n-layout-header {
           @apply relative z-20 px-4;
-          @apply bg-gradient-to-r from-primary to-blue shadow-xl;
-          @apply dark:from-dark-primary to-dark-blue;
+          @apply bg-gradient-to-r from-primary to-blue bg-repeat-x;
+          @apply dark:from-dark-primary dark:to-dark-blue;
 
           height: var(--header-height);
           line-height: var(--header-height);
         }
 
         .n-layout-content {
-          @apply p-8 bg-transparent;
+          @apply p-8 bg-transparent relative;
+          @apply before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-24;
+          @apply before:bg-gradient-to-r from-primary to-blue bg-repeat-x;
 
           height: calc(100% - var(--header-height) - var(--footer-height) - 1px); // footer 1px 边框
           background-color: var(--ice-background-color);
+
+          .n-layout-scroll-container {
+            @apply relative z-20 rounded-lg shadow-md;
+            @apply bg-white;
+          }
         }
 
         .n-layout-footer {

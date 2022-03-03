@@ -5,6 +5,7 @@ import 'nprogress/nprogress.css';
 
 import { createAppGuard } from './appGuard';
 import { createHtmlGuard } from './htmlGuard';
+import { dynamicRouterGuard } from './dynamicGuard';
 
 // 拦截器执行顺序不可修改
 export function setupRouterGuard(router: Router) {
@@ -12,6 +13,7 @@ export function setupRouterGuard(router: Router) {
 
   createAppGuard(router);
   createHtmlGuard(router);
+  dynamicRouterGuard(router);
 }
 
 /**

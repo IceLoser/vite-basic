@@ -1,7 +1,7 @@
 import { isDevMode } from '/@/utils/env';
 
 // 系统默认的缓存时间，单位为秒
-export const DEFAULT_CACHE_TIME = 60 * 60 * 24 * 7;
+export const DEFAULT_CACHE_TIME = 60 * 60 * 24 * 3;
 
 // aes加密密钥
 export const cacheCipher = {

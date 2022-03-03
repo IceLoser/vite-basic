@@ -1,8 +1,9 @@
-import type { Router } from 'vue-router';
+import type { Router, RouteRecordRaw } from 'vue-router';
 
 import { useUserStoreWithOut } from '/@/store/modules/user';
 import { useBasicStoreWithOut } from '/@/store/modules/basic';
 import { useSystemStoreWithOut } from '/@/store/modules/system';
+import { usePermissionStoreWithOut } from '/@/store/modules/permission';
 
 import { WHITE_NAME_LIST } from '/@/router/helper/constant';
 
@@ -25,23 +26,35 @@ export function createHtmlGuard(router: Router) {
     const basicStore = useBasicStoreWithOut();
     const t = basicStore.getToken;
 
-    if (t) {
-      const userStore = useUserStoreWithOut();
-      const userId = userStore.getUserId;
+    const userStore = useUserStoreWithOut();
+    const userId = userStore.getUserId;
 
-      if (!userId) {
-        userStore.setUserInfo();
-      }
+    const permissionStore = usePermissionStoreWithOut();
 
+    if (!t) {
+      next({
+        path: '/login',
+        replace: true,
+        query: { redirect: to.fullPath },
+      });
+      return;
+    }
+
+    if (!userId) {
+      userStore.setUserInfo();
+    }
+
+    if (permissionStore.getIsDynamicAddedRoute) {
       next();
       return;
     }
 
-    next({
-      path: '/login',
-      replace: true,
-      query: { redirect: to.fullPath },
+    const routers = await permissionStore.buildRouter();
+    routers.forEach((route) => {
+      router.addRoute(route as unknown as RouteRecordRaw);
     });
-    return;
+    permissionStore.setDynamicAddedRoute(true);
+
+    next({ path: to.fullPath, replace: true, query: to.query });
   });
 }
