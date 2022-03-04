@@ -82,8 +82,7 @@
           background-color: var(--ice-background-color);
 
           .n-layout-scroll-container {
-            @apply relative z-20 rounded-lg shadow-md;
-            @apply bg-white;
+            @apply relative z-20 rounded-lg;
           }
         }
 

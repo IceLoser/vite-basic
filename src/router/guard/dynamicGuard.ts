@@ -5,11 +5,15 @@ import { usePermissionStoreWithOut } from '/@/store/modules/permission';
 export function dynamicRouterGuard(router: Router) {
   router.beforeEach(async (_to, _from, next) => {
     const permissionStore = usePermissionStoreWithOut();
-    const menuList = permissionStore.getMenuList;
 
-    if (!menuList.length) {
-      permissionStore.setMenuList();
+    if (permissionStore.getIsDynamicAddedMenu) {
+      next();
+      return;
     }
+    const routerList = permissionStore.getRouterList;
+    const menuList = await permissionStore.buildMenu(routerList);
+    permissionStore.setMenuList(menuList);
+    permissionStore.setDynamicAddedMenu(true);
 
     next();
     return;

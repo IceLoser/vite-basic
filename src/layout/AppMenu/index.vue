@@ -8,12 +8,9 @@
 </template>
 
 <script lang="ts" name="AppMenu" setup>
-  import type { PropType, Component } from 'vue';
-  import type { MenuOption } from 'naive-ui';
+  import type { PropType } from 'vue';
 
-  import { RouterLink } from 'vue-router';
-  import { NIcon } from 'naive-ui';
-  import { HomeOutline as MainIcon } from '@vicons/ionicons5';
+  import { usePermissionStore } from '/@/store/modules/permission';
 
   const props = defineProps({
     status: {
@@ -24,30 +21,28 @@
 
   const router = useRouter();
   const currentRoute = router.currentRoute.value.name;
-  console.info('ICE-[ currentRoute ] >>>', currentRoute);
+
+  const permissionStore = usePermissionStore();
+  const menuOptions = computed(() => permissionStore.getMenuList);
 
   const collapsed = computed(() => props.status);
-  const menuOptions: MenuOption[] = [
-    {
-      label: () =>
-        h(
-          RouterLink,
-          {
-            to: {
-              name: 'MainRoot',
-              path: '/main/index',
-            },
-          },
-          { default: () => '首页' },
-        ),
-      key: 'Main',
-      icon: renderIcon(MainIcon),
-    },
-  ];
-
-  function renderIcon(icon: Component) {
-    return () => h(NIcon, null, { default: () => h(icon) });
-  }
+  // const menuOptions: MenuOption[] = [
+  //   {
+  //     label: () =>
+  //       h(
+  //         RouterLink,
+  //         {
+  //           to: {
+  //             name: 'MainRoot',
+  //             path: '/main/index',
+  //           },
+  //         },
+  //         { default: () => '首页' },
+  //       ),
+  //     key: 'Main',
+  //     icon: renderIcon(MainIcon),
+  //   },
+  // ];
 </script>
 
 <style lang="less" scoped></style>

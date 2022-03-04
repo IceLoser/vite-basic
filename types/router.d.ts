@@ -1,5 +1,6 @@
 import type { RouteRecordRaw, RouteMeta } from 'vue-router';
-import { RoleEnum } from '/@/enums/roleEnum';
+import type { VNodeChild, Component } from 'vue';
+
 import { defineComponent } from 'vue';
 
 export type Component<T = any> =
@@ -7,10 +8,14 @@ export type Component<T = any> =
   | (() => Promise<typeof import('*.vue')>)
   | (() => Promise<T>);
 
+export interface AppRouterMeta extends RouteMeta {
+  icon: Component;
+}
+
 // @ts-ignore
 export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
   name: string;
-  meta: RouteMeta;
+  meta: AppRouterMeta;
   component?: Component | string;
   components?: Component;
   children?: AppRouteRecordRaw[];
@@ -25,28 +30,26 @@ export interface MenuTag {
 }
 
 export interface Menu {
-  name: string;
+  // name: string;
+  // icon?: string;
+  // path: string;
 
-  icon?: string;
+  // // 路径包含参数，自动赋值
+  // paramPath?: string;
+  // disabled?: boolean;
+  // children?: Menu[];
+  // orderNo?: number;
+  // meta?: Partial<RouteMeta>;
+  // tag?: MenuTag;
+  // hideMenu?: boolean;
 
-  path: string;
-
-  // path contains param, auto assignment.
-  paramPath?: string;
-
+  label: string | (() => VNodeChild);
+  key: string;
+  icon: () => VNodeChild;
+  children?: Array<Menu>;
   disabled?: boolean;
-
-  children?: Menu[];
-
-  orderNo?: number;
-
-  roles?: RoleEnum[];
-
+  extra?: string | (() => VNodeChild);
   meta?: Partial<RouteMeta>;
-
-  tag?: MenuTag;
-
-  hideMenu?: boolean;
 }
 
 export interface MenuModule {
