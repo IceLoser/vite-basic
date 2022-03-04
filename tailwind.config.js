@@ -38,7 +38,7 @@ module.exports = {
       ...colors,
       primary: 'rgb(159, 120, 255)',
       blue: 'rgb(50, 202, 254)',
-      'dark-bg': 'rgb(30, 41, 59)',
+      'dark-bg': withOpacityValue('30 41 59'),
       'dark-primary': 'rgb(81, 74, 157)',
       'dark-blue': 'rgb(36, 198, 220)',
     },
@@ -56,3 +56,14 @@ module.exports = {
   },
   plugins: [],
 };
+
+function withOpacityValue(variable) {
+  console.log('variable', variable);
+  return ({ opacityValue }) => {
+    console.log('opacityValue', opacityValue);
+    if (opacityValue === undefined) {
+      return `rgb(${variable})`;
+    }
+    return `rgb(${variable} / ${opacityValue})`;
+  };
+}

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full p-4 bg-white dark:dark-bg ice_login">
+  <div class="ice_login">
     <section class="container relative h-full p-2 mx-auto sm:p-10">
       <div class="flex h-full">
         <!-- 左侧 说明 -->
@@ -18,6 +18,9 @@
 
 <style scoped lang="less">
   .ice_login {
+    @apply w-full h-full p-4;
+    @apply bg-white dark:bg-dark-bg;
+
     &::before {
       position: absolute;
       top: 0;

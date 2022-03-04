@@ -1,7 +1,6 @@
 import type { RouteLocationRaw, Router } from 'vue-router';
 
 import { isString } from '/@/utils/is';
-import { useRouter } from 'vue-router';
 import { REDIRECT_NAME } from '/@/router/routers/basic';
 
 export type RouteLocationRawEx = Omit<RouteLocationRaw, 'path'> & { path: string };
@@ -11,12 +10,10 @@ function handleError(e: Error) {
 }
 
 // page switch
-export function useGo(_router?: Router) {
-  let router;
-  if (!_router) {
-    router = useRouter();
-  }
-  const { push, replace } = _router || router;
+export function useGo(router?: Router) {
+  !router && (router = useRouter());
+
+  const { push, replace } = router;
   function go(opt: RouteLocationRawEx | string, isReplace = false) {
     if (!opt) {
       return;

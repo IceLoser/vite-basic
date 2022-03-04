@@ -28,8 +28,15 @@ export default defineComponent({
       },
     ];
 
-    function onSelect(key: number) {
-      console.info('ICE-[ key ] >>>', key);
+    async function onSelect(key: number) {
+      switch (key) {
+        case 1:
+          console.info('ICE-[ 用户资料 ] >>>', key);
+          break;
+        case 2:
+          await userStore.logout();
+          break;
+      }
     }
 
     return { userAvatar, userName, options, onSelect };

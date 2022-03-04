@@ -94,6 +94,7 @@
       @apply lg:w-3/4 !important;
       @apply sm:px-8;
       @apply sm:w-3/4 lg:w-2/4;
+      @apply dark:bg-transparent dark:shadow-none;
     }
 
     &-title {
