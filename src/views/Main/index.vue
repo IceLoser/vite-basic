@@ -1,10 +1,7 @@
 <template>
-  <section class="main-container"> </section>
+  <div>This is mainIdex.</div>
 </template>
 
-<script lang="ts" setup name="Main"></script>
+<script lang="ts" name="MainIndex" setup></script>
 
-<style lang="less" scoped>
-  .main-container {
-  }
-</style>
+<style lang="less" scoped></style>

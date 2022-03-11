@@ -74,7 +74,7 @@
         }
 
         .n-layout-content {
-          @apply p-8 bg-transparent relative;
+          @apply bg-transparent relative;
           @apply before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-24;
           @apply before:bg-gradient-to-r from-primary to-blue bg-repeat-x;
 
@@ -82,7 +82,7 @@
           background-color: var(--ice-background-color);
 
           .n-layout-scroll-container {
-            @apply relative z-20 rounded-lg;
+            @apply relative z-20 rounded-lg p-8;
           }
         }
 

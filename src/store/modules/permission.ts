@@ -54,7 +54,17 @@ export const usePermissionStore = defineStore({
       const _menu: Array<Menu> = [];
 
       routerList.forEach(async (item) => {
-        const children = item.children ? await this.buildMenu(item.children) : undefined;
+        const children =
+          item.children && item.children.length > 1
+            ? await this.buildMenu(item.children)
+            : undefined;
+
+        const key = item.children
+          ? item.children.length > 1
+            ? item.name
+            : item.children[0].name
+          : item.name;
+
         _menu.push({
           label: () =>
             h(
@@ -67,7 +77,7 @@ export const usePermissionStore = defineStore({
               },
               { default: () => item.meta.title },
             ),
-          key: item.name,
+          key,
           icon: renderIcon(item.meta.icon),
           children,
         });
