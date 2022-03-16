@@ -21,6 +21,8 @@ declare global {
 
     VITE_BUILD_COMPRESS: 'gzip' | 'brotli' | 'none'; // 是否启用 gzip 压缩或 brotli 压缩
     VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE: boolean; // 使用压缩时是否删除原始文件
+
+    VITE_MICRO_APP: [string, string][]; // 微服务外地址
   }
 
   declare type TimeoutHandle = ReturnType<typeof setTimeout>;

@@ -41,7 +41,14 @@
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.words": ["draged", "unplugin"],
+  "cSpell.words": [
+    "baseroute",
+    "beforemount",
+    "datachange",
+    "draged",
+    "Scopecss",
+    "unplugin"
+  ],
   "css.validate": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true

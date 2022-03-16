@@ -9,7 +9,7 @@ export type Component<T = any> =
   | (() => Promise<T>);
 
 export interface AppRouterMeta extends RouteMeta {
-  icon: Component;
+  icon?: Component;
 }
 
 // @ts-ignore

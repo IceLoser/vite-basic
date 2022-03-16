@@ -4,12 +4,13 @@ import { HomeOutline as MainIcon, RibbonOutline as MainIndex } from '@vicons/ion
 
 const LAYOUT = () => import('/@/layout/index.vue');
 
-const dashboard: AppRouteModule = {
+const MAIN_ROUTE: AppRouteModule = {
   path: '/main',
   name: 'MainRoot',
   component: LAYOUT,
   redirect: '/main/index',
   meta: {
+    orderNo: 0,
     title: '首页',
     icon: markRaw(MainIcon),
   },
@@ -19,6 +20,7 @@ const dashboard: AppRouteModule = {
       name: 'MainIndex',
       component: () => import('/@/views/Main/index.vue'),
       meta: {
+        orderNo: 0,
         title: '首页',
         icon: markRaw(MainIndex),
       },
@@ -26,4 +28,4 @@ const dashboard: AppRouteModule = {
   ],
 };
 
-export default dashboard;
+export default MAIN_ROUTE;

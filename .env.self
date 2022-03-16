@@ -10,7 +10,10 @@ VITE_PROXY = [["/basic-api","http://localhost:3000"],["/upload","http://localhos
 VITE_DROP_CONSOLE = false
 
 # 基本接口地址
-VITE_GLOB_API_URL= ""
+VITE_GLOB_API_URL = ""
 
 # 文件上传地址，可选
-VITE_GLOB_UPLOAD_URL= ""
+VITE_GLOB_UPLOAD_URL = ""
+
+# 微服务地址
+VITE_MICRO_APP = [["CareerAdmin","http://localhost:9923"]]
