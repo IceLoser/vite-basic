@@ -1,7 +1,11 @@
 <template>
-  <div>This is mainIdex.</div>
+  <div class="main">This is mainIdex.</div>
 </template>
 
 <script lang="ts" name="MainIndex" setup></script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+  .main {
+    height: calc(100% + 200px);
+  }
+</style>

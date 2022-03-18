@@ -1,23 +1,27 @@
 <template>
   <section class="career-admin">
-    <micro-app
-      class="career-admin-content"
-      :name="option.name"
-      :url="option.url"
-      :baseroute="option.baseroute"
-      @created="onHandleCreate"
-      @beforemount="onHandleBeforeMount"
-      @mounted="onHandleMount"
-      @unmount="onHandleUnmount"
-      @error="onHandleError"
-      @datachange="onHandleDataChange"
-    />
+    <SpinLoading :loadingStatus="loadingStatus" loadingText="职业C端后台管理系统加载中...">
+      <micro-app
+        class="career-admin-content"
+        :name="option.name"
+        :url="option.url"
+        :baseroute="option.baseroute"
+        @created="onHandleCreate"
+        @beforemount="onHandleBeforeMount"
+        @mounted="onHandleMount"
+        @unmount="onHandleUnmount"
+        @error="onHandleError"
+        @datachange="onHandleDataChange"
+      />
+    </SpinLoading>
   </section>
 </template>
 
 <script lang="ts" name="CareerAdmin" setup>
   import { getViteMicroApp } from '/@/utils';
+  import SpinLoading from '/@/components/SpinLoading';
 
+  const loadingStatus = ref(true);
   const { name, url } = getViteMicroApp('CareerAdmin');
   const option = reactive({
     name,
@@ -46,7 +50,8 @@
   }
 
   function onHandleDataChange(e: CustomEvent): void {
-    console.log('来自子应用 CareerAdmin 的数据:', e.detail.data);
+    const { isLoaded } = e.detail.data;
+    isLoaded && (loadingStatus.value = false);
   }
 </script>
 
@@ -63,6 +68,10 @@
 
       :deep(micro-app-body) {
         @apply w-full h-full;
+
+        #CareerAdminRoot {
+          overflow: hidden;
+        }
       }
     }
   }
