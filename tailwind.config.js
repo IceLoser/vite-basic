@@ -58,9 +58,7 @@ module.exports = {
 };
 
 function withOpacityValue(variable) {
-  console.log('variable', variable);
   return ({ opacityValue }) => {
-    console.log('opacityValue', opacityValue);
     if (opacityValue === undefined) {
       return `rgb(${variable})`;
     }
