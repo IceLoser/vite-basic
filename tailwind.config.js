@@ -1,4 +1,8 @@
 const colors = require('tailwindcss/colors');
+const typography = require('@tailwindcss/typography');
+const forms = require('@tailwindcss/forms');
+const lineClamp = require('@tailwindcss/line-clamp');
+const aspectRatio = require('@tailwindcss/aspect-ratio');
 
 module.exports = {
   darkMode: 'media',
@@ -54,7 +58,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [typography, forms, lineClamp, aspectRatio],
 };
 
 function withOpacityValue(variable) {

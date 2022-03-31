@@ -1,0 +1,26 @@
+.textMoreWrap {
+  @apply flex;
+
+  &ToggleInput {
+    @apply hidden;
+  }
+
+  &Content {
+    @apply relative;
+    @apply p-0 mt-4;
+    @apply text-inherit text-justify;
+
+    &Button {
+      @apply absolute right-0 bottom-0 pt-0 pr-1 pb-0 pl-2;
+      @apply text-inherit text-primary;
+      @apply cursor-pointer;
+
+      @apply before:text-inherit before:content-['...'] before:translate-x-full;
+
+      &NoAbsolute {
+        @apply float-none;
+        @apply text-inherit;
+      }
+    }
+  }
+}

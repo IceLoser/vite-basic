@@ -2,7 +2,7 @@ import type { PropType } from 'vue';
 
 import { NSpin, NIcon } from 'naive-ui';
 
-import styles from './styles/index.module.less';
+import styles from './styles/spin_loading.module.less';
 
 export default defineComponent({
   name: 'SpinLoading',
@@ -24,14 +24,10 @@ export default defineComponent({
     const status = computed(() => props.loadingStatus);
     const description = computed(() => props.loadingText);
 
-    return { status, description, slots };
-  },
-  render() {
-    const { status, description, slots } = this;
     const spinSlots = {
       icon: () => loadingIcon(),
       default: () => slots.default?.(),
-      description: () => <span class={styles['spin-loading-text']}>{description}</span>,
+      description: () => <span class={styles.spinLoadingText}>{description}</span>,
     };
 
     function loadingIcon() {
@@ -44,9 +40,14 @@ export default defineComponent({
       );
     }
 
+    return { status, spinSlots };
+  },
+  render() {
+    const { status, spinSlots } = this;
+
     return (
       <n-spin
-        class={styles['spin-loading']}
+        class={styles.spinLoading}
         size="large"
         show={status}
         rotate={false}

@@ -7,7 +7,7 @@ import { VantResolver, NaiveUiResolver } from 'unplugin-vue-components/resolvers
  */
 export function configComponentsPlugin() {
   return Components({
-    dts: true, // !当' typescript '被安装时，默认启用
+    dts: 'types/components.d.ts', // !当' typescript '被安装时，默认启用
     deep: true,
     resolvers: [VantResolver(), NaiveUiResolver()],
   });

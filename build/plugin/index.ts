@@ -3,6 +3,10 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 import legacy from '@vitejs/plugin-legacy';
 import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 
+// 启动优化
+import PkgConfig from 'vite-plugin-package-config';
+import OptimizationPersist from 'vite-plugin-optimize-persist';
+
 import { configPwaPlugin } from './pwa';
 import { configHtmlPlugin } from './html';
 import { configCompressPlugin } from './compress';
@@ -23,6 +27,8 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     }),
     vueJsx(),
     vueSetupExtend(), // setup 增强
+    PkgConfig(),
+    OptimizationPersist(),
   ];
 
   vitePlugins.push(configComponentsPlugin());
