@@ -20,13 +20,17 @@
       @apply cursor-pointer bg-inherit;
 
       @apply before:text-inherit before:content-['...'] before:translate-x-full;
-
-      &NoAbsolute {
-        @apply float-none p-0;
-        @apply text-right text-primary;
-        @apply cursor-pointer bg-inherit;
-      }
     }
+
+    &ButtonNoAbsolute {
+      @apply float-none p-0;
+      @apply text-right text-primary;
+      @apply cursor-pointer bg-inherit;
+    }
+  }
+
+  &Tooltip {
+    @apply max-w-md;
   }
 
   &LineClamp_1 {

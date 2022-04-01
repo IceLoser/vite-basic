@@ -1,10 +1,18 @@
 import type { PropType } from 'vue';
 
+import { NTooltip } from 'naive-ui';
 import styles from './styles/text_more.module.less';
 
 export default defineComponent({
   name: 'TextMore',
+  components: {
+    'n-tooltip': NTooltip,
+  },
   props: {
+    tooltip: {
+      type: [String, Boolean] as PropType<'hover' | 'click' | false>,
+      default: false,
+    },
     lineClamp: {
       type: Number as PropType<number>,
       default: 2,
@@ -14,9 +22,11 @@ export default defineComponent({
     },
   },
   setup(props, { slots }) {
-    const isUnFold = ref(false);
-    const wrapContent = ref<HTMLDivElement | null>(null);
-    const line = computed(() => props.lineClamp);
+    const wrapContent = ref<HTMLDivElement | null>(null); // 元素
+
+    const isUnFold = ref(false); // 是否展开
+    const line = computed(() => props.lineClamp); // 收起时的显示行数
+    const tipType = computed(() => props.tooltip); // tooltip
 
     function onToggle() {
       if (unref(wrapContent)) {
@@ -58,15 +68,40 @@ export default defineComponent({
           </label>
         );
       };
+
+      if (!unref(tipType)) {
+        return (
+          <div
+            class={[styles.textMoreWrapContent, styles[`textMoreWrapLineClamp_${unref(line)}`]]}
+            ref={wrapContent}
+          >
+            {!unref(isUnFold) && topLabel()}
+            {slots.default?.()}
+            {unref(isUnFold) && bottomLabel()}
+          </div>
+        );
+      }
+
       return (
-        <div
-          class={[styles.textMoreWrapContent, styles[`textMoreWrapLineClamp_${unref(line)}`]]}
-          ref={wrapContent}
-        >
-          {!unref(isUnFold) && topLabel()}
-          {slots.default?.()}
-          {unref(isUnFold) && bottomLabel()}
-        </div>
+        <n-tooltip
+          class={styles.textMoreWrapTooltip}
+          trigger={unref(tipType)}
+          v-slots={{
+            trigger: () => (
+              <div
+                class={[
+                  styles.textMoreWrapContent,
+                  styles[`textMoreWrapLineClamp_${unref(line)}`],
+                  'cursor-pointer',
+                ]}
+                ref={wrapContent}
+              >
+                {slots.default?.()}
+              </div>
+            ),
+            default: () => slots.default?.(),
+          }}
+        />
       );
     }
 
