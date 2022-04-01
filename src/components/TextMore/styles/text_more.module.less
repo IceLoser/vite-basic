@@ -1,5 +1,6 @@
 .textMoreWrap {
   @apply flex;
+  @apply bg-inherit;
 
   &ToggleInput {
     @apply hidden;
@@ -9,18 +10,50 @@
     @apply relative;
     @apply p-0 mt-4;
     @apply text-inherit text-justify;
+    @apply bg-inherit;
 
     &Button {
-      @apply absolute right-0 bottom-0 pt-0 pr-1 pb-0 pl-2;
-      @apply text-inherit text-primary;
-      @apply cursor-pointer;
+      width: 3em;
+
+      @apply absolute right-0 bottom-0 p-0;
+      @apply text-right text-primary;
+      @apply cursor-pointer bg-inherit;
 
       @apply before:text-inherit before:content-['...'] before:translate-x-full;
 
       &NoAbsolute {
-        @apply float-none;
-        @apply text-inherit;
+        @apply float-none p-0;
+        @apply text-right text-primary;
+        @apply cursor-pointer bg-inherit;
       }
     }
+  }
+
+  &LineClamp_1 {
+    @apply line-clamp-1;
+  }
+
+  &LineClamp_2 {
+    @apply line-clamp-2;
+  }
+
+  &LineClamp_3 {
+    @apply line-clamp-3;
+  }
+
+  &LineClamp_4 {
+    @apply line-clamp-4;
+  }
+
+  &LineClamp_5 {
+    @apply line-clamp-5;
+  }
+
+  &LineClamp_6 {
+    @apply line-clamp-6;
+  }
+
+  &LineClamp_none {
+    @apply line-clamp-none;
   }
 }

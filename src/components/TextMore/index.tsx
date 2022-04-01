@@ -9,16 +9,27 @@ export default defineComponent({
       type: Number as PropType<number>,
       default: 2,
       validator: (value: number) => {
-        return value >= 6 && value < 0;
+        return value <= 6 && value > 0;
       },
     },
   },
   setup(props, { slots }) {
     const isUnFold = ref(false);
+    const wrapContent = ref<HTMLDivElement | null>(null);
     const line = computed(() => props.lineClamp);
 
     function onToggle() {
-      isUnFold.value = !unref(isUnFold);
+      if (unref(wrapContent)) {
+        isUnFold.value = !unref(isUnFold);
+
+        if (unref(isUnFold)) {
+          unref(wrapContent)?.classList.remove(styles[`textMoreWrapLineClamp_${unref(line)}`]);
+          unref(wrapContent)?.classList.add(styles['textMoreWrapLineClamp_none']);
+        } else {
+          unref(wrapContent)?.classList.remove(styles['textMoreWrapLineClamp_none']);
+          unref(wrapContent)?.classList.add(styles[`textMoreWrapLineClamp_${unref(line)}`]);
+        }
+      }
     }
 
     function toggleInput() {
@@ -33,15 +44,28 @@ export default defineComponent({
     }
 
     function content() {
-      return (
-        <div class={[styles.textMoreWrapContent, `line-clamp-${unref(line)}`]}>
+      const topLabel = () => {
+        return (
           <label class={styles.textMoreWrapContentButton} onClick={onToggle}>
             {unref(isUnFold) ? '收起' : '展开'}
           </label>
-          {slots.default?.()}
-          {/* <label class={styles.textMoreWrapContentButtonNoAbsolute} for="textMoreToggleInput">
+        );
+      };
+      const bottomLabel = () => {
+        return (
+          <label class={styles.textMoreWrapContentButtonNoAbsolute} onClick={onToggle}>
             收起
-          </label> */}
+          </label>
+        );
+      };
+      return (
+        <div
+          class={[styles.textMoreWrapContent, styles[`textMoreWrapLineClamp_${unref(line)}`]]}
+          ref={wrapContent}
+        >
+          {!unref(isUnFold) && topLabel()}
+          {slots.default?.()}
+          {unref(isUnFold) && bottomLabel()}
         </div>
       );
     }
