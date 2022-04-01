@@ -61,6 +61,10 @@
         }
       }
 
+      .n-layout-toggle-button {
+        @apply z-20;
+      }
+
       .layout-content-container {
         .n-layout-header {
           @apply relative z-20 px-4;
