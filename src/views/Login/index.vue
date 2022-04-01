@@ -21,25 +21,12 @@
     @apply w-full h-full p-4;
     @apply bg-white dark:bg-dark-bg;
 
-    &::before {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      margin-left: -48%;
-      background-image: url('/@/assets/images/login/login_bg.svg');
-      background-position: 100%;
-      background-repeat: no-repeat;
-      background-size: auto 100%;
-      content: '';
-    }
-  }
-  html[data-theme='dark'] {
-    .ice_login {
-      &::before {
-        background-image: url('/@/assets/images/login/login_bg_dark.svg');
-      }
-    }
+    @apply before:absolute before:top-0 before:left-0 before:w-full before:h-full;
+    @apply before:ml-[-36%] sm:before:ml-[-48%];
+    @apply before:bg-[url('/@/assets/images/login/login_bg.svg')];
+    @apply before:bg-[100%_center] before:bg-no-repeat before:bg-[length:auto_100%];
+    @apply before:content-[""];
+
+    @apply dark:before:bg-[url('/@/assets/images/login/login_bg_dark.svg')];
   }
 </style>

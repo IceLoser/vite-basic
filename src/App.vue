@@ -1,5 +1,5 @@
 <template>
-  <n-config-provider :theme="theme" :theme-overrides="themeOverrides">
+  <n-config-provider :theme="theme" :theme-overrides="themeOverrides" :breakpoints="breakpoints">
     <router-view />
   </n-config-provider>
 </template>
@@ -28,6 +28,8 @@
     },
   };
   const theme = computed(() => (unref(isDark) ? darkTheme : null));
+
+  const breakpoints = { xs: 0, s: 640, m: 768, l: 1024, xl: 1280, xxl: 1536 };
 
   useTitle();
   useNetworkStatus();
