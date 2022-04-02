@@ -26,6 +26,11 @@
       primaryColorHover: unref(iceColor).primaryColorHover,
       primaryColorPressed: unref(iceColor).primaryColor,
     },
+    Menu: {
+      itemColorHover: unref(iceColor).primaryColorHover,
+      itemTextColorHover: unref(iceColor).primaryColor,
+      itemColorActive: unref(iceColor).primaryColorHover,
+    },
   };
   const theme = computed(() => (unref(isDark) ? darkTheme : null));
 

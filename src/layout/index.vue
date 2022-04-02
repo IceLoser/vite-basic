@@ -85,6 +85,11 @@
 
           .n-scrollbar {
             @apply relative z-20 rounded-lg p-8;
+
+            .n-scrollbar-container,
+            .n-scrollbar-content {
+              @apply w-full h-full;
+            }
           }
         }
 

@@ -57,7 +57,7 @@
 
 <style lang="less" scoped>
   .career-admin {
-    @apply w-full h-full;
+    @apply w-full min-h-full;
 
     &-title {
       @apply font-serif text-2xl subpixel-antialiased font-bold tracking-wide text-white;

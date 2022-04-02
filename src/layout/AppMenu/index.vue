@@ -8,7 +8,8 @@
 </template>
 
 <script lang="ts" name="AppMenu" setup>
-  import type { PropType } from 'vue';
+  import type { PropType, ComputedRef } from 'vue';
+  import type { MenuOption } from 'naive-ui';
 
   import { usePermissionStore } from '/@/store/modules/permission';
 
@@ -20,29 +21,12 @@
   });
 
   const router = useRouter();
-  const currentRoute = router.currentRoute.value.name;
+  const currentRoute = router.currentRoute.value.name as string;
 
   const permissionStore = usePermissionStore();
-  const menuOptions = computed(() => permissionStore.getMenuList);
+  const menuOptions = computed(() => permissionStore.getMenuList) as ComputedRef<MenuOption[]>;
 
   const collapsed = computed(() => props.status);
-  // const menuOptions: MenuOption[] = [
-  //   {
-  //     label: () =>
-  //       h(
-  //         RouterLink,
-  //         {
-  //           to: {
-  //             name: 'MainRoot',
-  //             path: '/main/index',
-  //           },
-  //         },
-  //         { default: () => '首页' },
-  //       ),
-  //     key: 'Main',
-  //     icon: renderIcon(MainIcon),
-  //   },
-  // ];
 </script>
 
 <style lang="less" scoped></style>

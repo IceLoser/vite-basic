@@ -27,7 +27,7 @@ export default defineComponent({
     const spinSlots = {
       icon: () => loadingIcon(),
       default: () => slots.default?.(),
-      description: () => <span class={styles.spinLoadingText}>{description}</span>,
+      description: () => <span class={styles.spinLoadingText}>{unref(description)}</span>,
     };
 
     function loadingIcon() {
@@ -49,10 +49,10 @@ export default defineComponent({
       <n-spin
         class={styles.spinLoading}
         size="large"
-        show={status}
+        show={unref(status)}
         rotate={false}
         v-slots={spinSlots}
-      ></n-spin>
+      />
     );
   },
 });

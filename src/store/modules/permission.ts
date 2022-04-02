@@ -1,4 +1,5 @@
 // import type { MenuOption } from 'naive-ui';
+import type { VNodeChild } from 'vue';
 import type { AppRouteModule, Menu } from '/#/router';
 
 import { store } from '/@/store';
@@ -78,7 +79,7 @@ export const usePermissionStore = defineStore({
               { default: () => item.meta.title },
             ),
           key,
-          icon: renderIcon(item.meta.icon),
+          icon: renderIcon(item.meta.icon as () => VNodeChild),
           children,
         });
       });
