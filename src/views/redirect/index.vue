@@ -1,7 +1,10 @@
 <template>
-  <div></div>
+  <div>
+    <p>path: {{ _path }}</p>
+    <p>redirectType: {{ _redirect_type }}</p>
+  </div>
 </template>
-<script lang="ts" setup>
+<script lang="ts" setup name="Redirect">
   const { currentRoute, replace } = useRouter();
 
   const { params, query } = unref(currentRoute);

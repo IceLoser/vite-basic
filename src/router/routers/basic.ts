@@ -1,7 +1,9 @@
 import type { AppRouteRecordRaw } from '/#/router';
 
-const resultComponent = () => import('/@/views/Result/index.vue');
 const LAYOUT = () => import('/@/layout/index.vue');
+const resultComponent = () => import('/@/views/Result/index.vue');
+
+export const RESULT_NAME = 'Result';
 export const REDIRECT_NAME = 'Redirect';
 
 export const RootRoute: AppRouteRecordRaw = {
@@ -31,7 +33,7 @@ export const ErrorRoute: AppRouteRecordRaw[] = [
     // 注意这里，404页面匹配规则和以前不相同，要采用这种配置方式才行
     path: '/:pathMatch(.*)*',
     component: resultComponent,
-    name: 'Result',
+    name: RESULT_NAME,
     meta: {
       title: 'Error',
     },
@@ -41,7 +43,7 @@ export const ErrorRoute: AppRouteRecordRaw[] = [
 export const REDIRECT_ROUTE: AppRouteRecordRaw = {
   path: '/redirect',
   component: LAYOUT,
-  name: REDIRECT_NAME,
+  name: 'RedirectTo',
   meta: {
     title: '刷新',
     hideBreadcrumb: true,
@@ -55,7 +57,6 @@ export const REDIRECT_ROUTE: AppRouteRecordRaw = {
       meta: {
         title: '刷新',
         hideBreadcrumb: true,
-        hideMenu: true,
       },
     },
   ],

@@ -7,14 +7,19 @@ export default defineComponent({
     'n-icon': NIcon,
   },
   setup() {
-    const redo = useRedo();
+    const router = useRouter();
+    const redo = useRedo(router);
 
-    return { redo };
+    async function onRefresh() {
+      await redo();
+    }
+
+    return { onRefresh };
   },
   render() {
-    const { redo } = this;
+    const { onRefresh } = this;
     return (
-      <n-icon size="20" color="#fff" class="cursor-pointer" onclick={redo}>
+      <n-icon size="20" color="#fff" class="cursor-pointer" onclick={onRefresh}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <g
             fill="none"

@@ -6,6 +6,7 @@ import { useSystemStoreWithOut } from '/@/store/modules/system';
 import { usePermissionStoreWithOut } from '/@/store/modules/permission';
 
 import { WHITE_NAME_LIST } from '/@/router/helper/constant';
+import { RESULT_NAME } from '/@/router/routers/basic';
 
 // 浏览器运行环境拦截逻辑
 export function createHtmlGuard(router: Router) {
@@ -17,7 +18,7 @@ export function createHtmlGuard(router: Router) {
     return;
   } // *运行环境为 app 内,直接跳出拦截
 
-  router.beforeEach(async (to, _from, next) => {
+  router.beforeEach(async (to, from, next) => {
     if (WHITE_NAME_LIST.includes(to.path)) {
       next();
       return;
@@ -55,6 +56,13 @@ export function createHtmlGuard(router: Router) {
     });
     permissionStore.setDynamicAddedRoute(true);
 
-    next({ path: to.fullPath, replace: true, query: to.query });
+    if (to.name === RESULT_NAME) {
+      next({ path: to.fullPath, replace: true, query: to.query });
+    } else {
+      const redirectPath = (from.query.redirect || to.path) as string;
+      const redirect = decodeURIComponent(redirectPath);
+      const nextData = to.path === redirect ? { ...to, replace: true } : { path: redirect };
+      next(nextData);
+    }
   });
 }
