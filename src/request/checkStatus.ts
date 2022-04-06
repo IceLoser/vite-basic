@@ -1,10 +1,5 @@
 import type { ErrorMessageMode } from '/#/axios';
 
-import { useMessage, useDialog } from 'naive-ui';
-
-const dialogPrompt = useDialog();
-const messagePrompt = useMessage();
-
 export function checkStatus(
   status: number,
   msg: string,
@@ -20,7 +15,7 @@ export function checkStatus(
     // Jump to the login page if not logged in, and carry the path of the current page
     // Return to the current page after successful login. This step needs to be operated on the login page.
     case 401:
-      errMessage = msg || '用户没有权限';
+      errMessage = msg || '用户未得到授权';
       break;
     case 403:
       errMessage = '用户得到授权，但是访问是被禁止的!';
@@ -58,12 +53,12 @@ export function checkStatus(
 
   if (errMessage) {
     if (errorMessageMode === 'modal') {
-      dialogPrompt.error({
+      window.$dialog.error({
         title: '错误提示',
         content: errMessage,
       });
     } else if (errorMessageMode === 'message') {
-      messagePrompt.error(errMessage);
+      window.$message.error(errMessage);
     }
   }
 }

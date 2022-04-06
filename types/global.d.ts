@@ -1,4 +1,5 @@
 import type { VNode, ComponentRenderProxy } from 'vue';
+import type { DialogApi, MessageApi } from 'naive-ui';
 
 declare global {
   type Recordable<T = any> = Record<string, T>;
@@ -29,6 +30,11 @@ declare global {
   declare type IntervalHandle = ReturnType<typeof setInterval>;
 
   declare type Nullable<T> = T | null;
+
+  declare interface Window {
+    $dialog: DialogApi;
+    $message: MessageApi;
+  }
 
   namespace JSX {
     type Element = VNode;

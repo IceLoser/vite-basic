@@ -1,6 +1,12 @@
 <template>
   <n-config-provider :theme="theme" :theme-overrides="themeOverrides" :breakpoints="breakpoints">
     <router-view />
+    <n-dialog-provider>
+      <dialog-content />
+    </n-dialog-provider>
+    <n-message-provider>
+      <message-content />
+    </n-message-provider>
   </n-config-provider>
 </template>
 
@@ -8,6 +14,7 @@
   import type { GlobalThemeOverrides } from 'naive-ui';
 
   import { NConfigProvider, darkTheme } from 'naive-ui';
+  import { DialogContent, MessageContent } from '/@/components/NaiveUI';
 
   import { useTitle } from './hooks/core/useTitle';
   import { useNetworkStatus } from './hooks/event/useEvent';

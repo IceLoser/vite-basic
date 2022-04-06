@@ -14,12 +14,7 @@ import { joinTimestamp, formatRequestDate } from './helper';
 import { checkStatus } from './checkStatus';
 import { AxiosRetry } from './axiosRetry';
 
-import { useMessage, useDialog } from 'naive-ui';
-
 const { apiUrl } = useGlobSetting();
-
-const dialogPrompt = useDialog();
-const messagePrompt = useMessage();
 
 /**
  * @description: 数据处理，方便区分多种处理方式
@@ -130,12 +125,12 @@ const transform: AxiosTransform = {
     // errorMessageMode=‘modal’的时候会显示modal错误弹窗，而不是消息提示，用于一些比较重要的错误
     // errorMessageMode='none' 一般是调用时明确表示不希望自动弹出错误提示
     if (options.errorMessageMode === 'modal') {
-      dialogPrompt.error({
+      window.$dialog.error({
         title: '错误提示',
         content: message || '请求错误, 请稍后重新尝试!',
       });
     } else if (options.errorMessageMode === 'message') {
-      messagePrompt.error(message || '请求错误, 请稍后重新尝试!');
+      window.$message.error(message || '请求错误, 请稍后重新尝试!');
     }
 
     throw new Error(message || '请求错误, 请稍后重新尝试!');
@@ -152,38 +147,38 @@ const transform: AxiosTransform = {
    * @description: 响应错误处理
    */
   responseInterceptorsCatch: (axiosInstance: AxiosResponse, error: any) => {
-    const { config, response, status, message } = error;
+    const { config, response } = error; // TODO: { status, message }
     const errorMessageMode = config.requestOptions.errorMessageMode || 'none';
 
     const msg: string = response?.data?.error?.message ?? '';
-    const err: string = error?.toString?.() ?? '';
+    // const err: string = error?.toString?.() ?? '';
 
-    let errMessage = '';
+    // let errMessage = '';
 
-    try {
-      if (status === ResultEnum.TIMEOUT && message.indexOf('timeout') !== -1) {
-        errMessage = '连接超时,请检查您的网络!';
-      }
+    // try {
+    //   if (status === ResultEnum.TIMEOUT && message.indexOf('timeout') !== -1) {
+    //     errMessage = '连接超时,请检查您的网络!';
+    //   }
 
-      if (err?.includes('Network Error')) {
-        errMessage = '网络异常,请检查您的网络!';
-      }
+    //   if (err?.includes('Network Error')) {
+    //     errMessage = '网络异常,请检查您的网络!';
+    //   }
 
-      if (errorMessageMode) {
-        if (errorMessageMode === 'modal') {
-          dialogPrompt.error({
-            title: '错误提示',
-            content: errMessage,
-          });
-        } else if (errorMessageMode === 'message') {
-          messagePrompt.error(errMessage);
-        }
+    //   if (errorMessageMode) {
+    //     if (errorMessageMode === 'modal') {
+    //       window.$dialog.error({
+    //         title: '错误提示',
+    //         content: errMessage,
+    //       });
+    //     } else if (errorMessageMode === 'message') {
+    //       window.$message.error(message);
+    //     }
 
-        return Promise.reject(error);
-      }
-    } catch (error) {
-      throw new Error(error as unknown as string);
-    }
+    //     return Promise.reject(error);
+    //   }
+    // } catch (error) {
+    //   throw new Error(error as unknown as string);
+    // }
 
     checkStatus(error?.response?.status, msg, errorMessageMode);
 
@@ -220,7 +215,7 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
           retryRequest: {
             isOpenRetry: true,
             count: 5,
-            waitTime: 100,
+            waitTime: 15 * 1000,
           },
         },
       },
@@ -229,4 +224,4 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
   );
 }
 
-export default createAxios();
+export const defHttp = createAxios();
