@@ -26,7 +26,15 @@
           <n-checkbox v-model:checked="formData.remember"> 记住密码 </n-checkbox>
         </n-form-item>
         <n-form-item class="login-form-box-item">
-          <n-button block type="primary" @click="onLogin" attr-type="button"> 登录 </n-button>
+          <n-button
+            class="login-form-box-item-button"
+            block
+            type="primary"
+            @click="onLogin"
+            attr-type="button"
+          >
+            登录
+          </n-button>
         </n-form-item>
       </n-form>
     </div>
@@ -108,6 +116,14 @@
 
       &-item {
         @apply w-full;
+
+        &-button {
+          &:focus,
+          &:hover,
+          &:active {
+            @apply text-primary !important;
+          }
+        }
       }
     }
   }
