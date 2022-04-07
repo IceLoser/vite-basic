@@ -6,15 +6,10 @@ declare module 'vue' {
   export interface GlobalComponents {
     DialogContent: typeof import('./../src/components/NaiveUI/src/DialogContent.vue')['default'];
     MessageContent: typeof import('./../src/components/NaiveUI/src/MessageContent.vue')['default'];
-    NButton: typeof import('naive-ui')['NButton'];
     NCard: typeof import('naive-ui')['NCard'];
-    NCheckbox: typeof import('naive-ui')['NCheckbox'];
     NDialogProvider: typeof import('naive-ui')['NDialogProvider'];
-    NForm: typeof import('naive-ui')['NForm'];
-    NFormItem: typeof import('naive-ui')['NFormItem'];
     NGrid: typeof import('naive-ui')['NGrid'];
     NGridItem: typeof import('naive-ui')['NGridItem'];
-    NInput: typeof import('naive-ui')['NInput'];
     NLayout: typeof import('naive-ui')['NLayout'];
     NLayoutContent: typeof import('naive-ui')['NLayoutContent'];
     NLayoutFooter: typeof import('naive-ui')['NLayoutFooter'];

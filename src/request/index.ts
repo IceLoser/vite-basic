@@ -89,51 +89,52 @@ const transform: AxiosTransform = {
   },
 
   /**
-   * @description: 处理请求数据。如果数据不是预期格式，可直接抛出错误
+   * @description: 处理请求数据。
+   *               如果数据不是预期格式, 可直接抛出错误
    */
   transformRequestHook: (res: AxiosResponse<Result>, options: RequestOptions) => {
     const { isTransformResponse, isReturnNativeResponse } = options;
 
-    if (isTransformResponse) {
-      return res.data;
-    } // i:不进行任何处理，直接返回
-
+    // i: 是否返回原生响应头 比如：需要获取响应头时使用该属性
     if (isReturnNativeResponse) {
       return res;
-    } // i: 是否返回原生响应头 比如：需要获取响应头时使用该属性
+    }
 
-    const { data } = res;
-    if (!data) {
+    try {
+      // i: 不处理数据, 直接返回 data
+      if (isTransformResponse) {
+        return res.data;
+      }
+
+      const { data } = res;
+      const { status, msg, result } = data;
+      const hasSuccess = data && Reflect.has(data, 'status') && status === ResultEnum.SUCCESS;
+
+      if (hasSuccess) {
+        return result;
+      }
+
+      let message = '';
+      switch (status) {
+        case ResultEnum.TIMEOUT:
+          message = '连接超时,请检查您的网络';
+        default:
+          msg && (message = msg);
+      }
+
+      // errorMessageMode=‘modal’的时候会显示modal错误弹窗，而不是消息提示，用于一些比较重要的错误
+      // errorMessageMode='none' 一般是调用时明确表示不希望自动弹出错误提示
+      if (options.errorMessageMode === 'modal') {
+        window.$dialog.error({
+          title: '错误提示',
+          content: message || '请求错误, 请稍后重新尝试!',
+        });
+      } else if (options.errorMessageMode === 'message') {
+        window.$message.error(message || '请求错误, 请稍后重新尝试!');
+      }
+    } catch {
       throw new Error('请求错误, 请稍后重新尝试!');
     }
-
-    const { status, msg, result } = data;
-    const hasSuccess = data && Reflect.has(data, 'status') && status === ResultEnum.SUCCESS;
-
-    if (hasSuccess) {
-      return result;
-    }
-
-    let message = '';
-    switch (status) {
-      case ResultEnum.TIMEOUT:
-        message = '连接超时,请检查您的网络';
-      default:
-        msg && (message = msg);
-    }
-
-    // errorMessageMode=‘modal’的时候会显示modal错误弹窗，而不是消息提示，用于一些比较重要的错误
-    // errorMessageMode='none' 一般是调用时明确表示不希望自动弹出错误提示
-    if (options.errorMessageMode === 'modal') {
-      window.$dialog.error({
-        title: '错误提示',
-        content: message || '请求错误, 请稍后重新尝试!',
-      });
-    } else if (options.errorMessageMode === 'message') {
-      window.$message.error(message || '请求错误, 请稍后重新尝试!');
-    }
-
-    throw new Error(message || '请求错误, 请稍后重新尝试!');
   },
 
   /**
