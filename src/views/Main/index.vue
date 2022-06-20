@@ -46,14 +46,14 @@
 <script lang="ts" name="MainIndex" setup>
   import TextMore from '/@/components/TextMore';
 
-  import { examples } from '/@/api/examples';
+  // import { examples } from '/@/api/examples';
 
   /**
    * TODO: api 测试
    */
-  examples({ id: '01' }).then((res) => {
-    console.info('ICE-[ THEN-res ] >>>', res);
-  });
+  // examples({ id: '01' }).then((res) => {
+  //   console.info('ICE-[ THEN-res ] >>>', res);
+  // });
 
   const line = ref(2);
 </script>

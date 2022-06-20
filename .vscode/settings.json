@@ -20,6 +20,9 @@
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
   "[scss]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -56,14 +59,8 @@
     "source.fixAll.eslint": true
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  //===========================================
-  //============= Editor ======================
-  //===========================================
   "editor.tabSize": 2,
   "eslint.packageManager": "pnpm",
-  //===========================================
-  //============= files =======================
-  //===========================================
   "files.eol": "\n",
   "files.exclude": {
     "**/.DS_Store": true,
@@ -92,10 +89,17 @@
     "spec-char-escape": false
   },
   "i18n-ally.displayLanguage": "zh-CN",
-  "i18n-ally.enabledFrameworks": ["vue", "react"],
-  "i18n-ally.enabledParsers": ["ts"],
+  "i18n-ally.enabledFrameworks": [
+    "vue",
+    "react"
+  ],
+  "i18n-ally.enabledParsers": [
+    "ts"
+  ],
   "i18n-ally.keystyle": "nested",
-  "i18n-ally.localesPaths": ["src/locales/lang"],
+  "i18n-ally.localesPaths": [
+    "src/locales/lang"
+  ],
   "i18n-ally.namespace": true,
   "i18n-ally.pathMatcher": "{locale}/{namespaces}.{ext}",
   "i18n-ally.sortKeys": true,
@@ -130,17 +134,16 @@
     "examples": true,
     "node_modules": true,
     "out": true,
+    "pnpm-lock.yaml": true,
     "res": true,
     "screenshots": true,
-    "yarn-error.log": true,
-    "pnpm-lock.yaml": true
+    "yarn-error.log": true
   },
   "stylelint.enable": true,
   "stylelint.packageManager": "pnpm",
   "typescript.check.npmIsInstalled": false,
   "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.locale": "zh-CN",
   "typescript.tsdk": "./node_modules/typescript/lib",
-  "typescript.tsserver.pluginPaths": ["typescript-plugin-css-modules"],
-  "workbench.settings.enableNaturalLanguageSearch": false,
-  "typescript.locale": "zh-CN"
+  "workbench.settings.enableNaturalLanguageSearch": false
 }
